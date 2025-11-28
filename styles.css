@@ -5,64 +5,97 @@
 }
 
 body {
-    font-family: 'Sarabun', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Prompt', sans-serif;
+    background: #000;
     min-height: 100vh;
     padding: 0;
     margin: 0;
     overflow-x: hidden;
 }
 
-. container {
+.container {
     max-width: 480px;
     margin: 0 auto;
     min-height: 100vh;
-    background: #f5f7fa;
+    background: #000;
     position: relative;
-    aspect-ratio: 9 / 16;
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+    padding-bottom: 2rem;
 }
 
 @media (max-width: 480px) {
     .container {
         max-width: 100%;
-        aspect-ratio: auto;
     }
 }
 
 /* Header */
 .header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 2rem 1. 5rem;
+    background: linear-gradient(90deg, #c0c0c0 0%, #e0e0e0 50%, #c0c0c0 100%);
+    color: #008B8B;
+    padding: 1.5rem;
     text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    margin: 1.5rem 1rem;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
 }
 
 .header h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
 }
 
-.subtitle {
-    font-size: 1rem;
-    opacity: 0.9;
-    font-weight: 300;
+/* Date Selector */
+.date-selector {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    padding: 0 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.date-btn {
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, #b0b0b0 0%, #d0d0d0 100%);
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+    font-family: 'Prompt', sans-serif;
+}
+
+.date-btn:hover {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, #008B8B 0%, #20B2AA 100%);
+    color: white;
+}
+
+.date-btn.active {
+    background: linear-gradient(135deg, #008B8B 0%, #20B2AA 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 139, 139, 0.5);
+    transform: scale(1.05);
+}
+
+.date-btn.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
 }
 
 /* Loading */
 .loading {
     text-align: center;
     padding: 3rem 1.5rem;
+    color: white;
 }
 
 .spinner {
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #667eea;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #008B8B;
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -75,7 +108,7 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-. hidden {
+.hidden {
     display: none !important;
 }
 
@@ -83,34 +116,37 @@ body {
 .error {
     text-align: center;
     padding: 2rem 1.5rem;
-    color: #e74c3c;
+    color: #ff6b6b;
 }
 
 .error button {
     margin-top: 1rem;
     padding: 0.75rem 2rem;
-    background: #667eea;
+    background: #008B8B;
     color: white;
     border: none;
     border-radius: 25px;
     font-size: 1rem;
     cursor: pointer;
-    font-family: 'Sarabun', sans-serif;
+    font-family: 'Prompt', sans-serif;
 }
 
 /* Activities */
 .activities {
-    padding: 1rem;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
+/* Activity Card */
 .activity-card {
-    background: white;
-    border-radius: 20px;
-    margin-bottom: 1.5rem;
+    position: relative;
+    border-radius: 25px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
     animation: fadeIn 0.5s ease-in-out;
+    background: #d0d0d0;
 }
 
 @keyframes fadeIn {
@@ -124,109 +160,105 @@ body {
     }
 }
 
-.activity-card:active {
-    transform: scale(0.98);
+/* Activity Image Container */
+.activity-image-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: #f0f0f0;
+    border-radius: 25px 25px 0 0;
+    overflow: hidden;
 }
 
 .activity-image {
     width: 100%;
-    height: 250px;
+    height: 100%;
     object-fit: cover;
     cursor: pointer;
-    transition: transform 0.3s ease;
 }
 
-.activity-image:hover {
-    transform: scale(1.05);
-}
-
-.activity-content {
-    padding: 1. 5rem;
-}
-
-.activity-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.activity-number {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 1.1rem;
-}
-
-.activity-date {
-    color: #7f8c8d;
-    font-size: 0.9rem;
+/* Overlay Text Box (White 50% opacity) */
+.activity-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 1.5rem;
+    border-radius: 20px 20px 0 0;
 }
 
 .activity-title {
     font-size: 1.4rem;
     font-weight: 700;
-    color: #2c3e50;
-    margin-bottom: 0.75rem;
+    color: #000;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 .activity-location {
     display: flex;
     align-items: center;
-    color: #e74c3c;
-    font-size: 1rem;
-    margin-bottom: 1rem;
     gap: 0.5rem;
+    color: #333;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
 }
 
 .activity-detail {
-    color: #555;
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
+    color: #222;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    font-weight: 400;
 }
 
-. activity-etc {
-    background: #fff3cd;
-    border-left: 4px solid #ffc107;
+/* Bottom Info Section */
+.activity-info {
+    background: #d0d0d0;
+    padding: 1rem 1.5rem;
+    border-radius: 0 0 25px 25px;
+}
+
+.activity-date {
+    color: #555;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.activity-etc {
+    background: rgba(0, 139, 139, 0.1);
+    border-left: 4px solid #008B8B;
     padding: 0.75rem;
-    margin-bottom: 1rem;
+    margin: 0.75rem 0;
     border-radius: 5px;
     font-size: 0.95rem;
-    color: #856404;
+    color: #333;
+    font-weight: 500;
 }
 
 .activity-map {
-    margin-top: 1rem;
+    margin-top: 0.75rem;
 }
 
 .map-link {
     display: inline-block;
-    background: #34495e;
+    background: #008B8B;
     color: white;
-    padding: 0. 75rem 1.5rem;
+    padding: 0.7rem 1.5rem;
     border-radius: 25px;
     text-decoration: none;
     font-weight: 600;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
 }
 
 .map-link:hover {
-    background: #2c3e50;
-}
-
-. map-embed {
-    width: 100%;
-    height: 200px;
-    border: none;
-    border-radius: 10px;
-    margin-top: 0.5rem;
+    background: #006666;
+    transform: scale(1.05);
 }
 
 /* Image Modal */
@@ -265,5 +297,5 @@ body {
 .no-data {
     text-align: center;
     padding: 3rem 1.5rem;
-    color: #7f8c8d;
+    color: #999;
 }
