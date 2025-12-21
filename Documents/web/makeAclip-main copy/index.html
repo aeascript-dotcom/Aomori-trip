@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>makeAclip ✨ - สร้างคลิปสไลด์จากภาพและข้อความของคุณ</title>
+    
+    <link rel="icon" type="image/png" href="./logomakeaclip.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600&family=Anuphan:wght@300;400;500;600&family=Kodchasan:wght@300;400;500;600&family=NotoSansThai:wght@400;600&family=Chakra+Petch:wght@400;600&family=Langes:wght@400;600&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="font-loader">font_loader_hack</div>
+
+    <nav class="app-sidebar">
+        <div class="sidebar-header">
+            <div class="app-logo">
+                <img src="./logomakeaclip.png" alt="makeAclip logo" class="logo-image">
+            </div>
+            <div class="app-branding">
+                <h1 class="app-title">makeAclip</h1>
+                <p class="app-subtitle">Clip Creator</p>
+            </div>
+        </div>
+        
+        <div class="sidebar-menu">
+            <button class="sidebar-item active" data-menu="slides">
+                <span class="sidebar-icon material-icons">image</span>
+                <span class="sidebar-label">Slides</span>
+            </button>
+            <button class="sidebar-item" data-menu="settings">
+                <span class="sidebar-icon material-icons">settings</span>
+                <span class="sidebar-label">Settings</span>
+            </button>
+            <button class="sidebar-item" data-menu="export">
+                <span class="sidebar-icon material-icons">movie</span>
+                <span class="sidebar-label">Export</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="branding-header">
+            <div class="brand-container">
+                <div class="brand-logo material-icons">movie</div>
+                <div class="brand-info">
+                    <h1 class="brand-title">makeAclip</h1>
+                    <p class="brand-subtitle">Create Amazing Video Clips</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-wrapper">
+            <section id="slides-section" class="image-list-section">
+                <div class="container">
+                    <div class="aspect-ratio-selector-wrapper">
+                        <label class="control-label" for="aspectRatioSelect">📺 Export Video Aspect Ratio</label>
+                        <div style="display: flex; gap: 10px; align-items: center; justify-content: center;">
+                            <select id="aspectRatioSelect" class="custom-select" style="max-width: 300px;">
+                                <option value="1:1">Square (1:1)</option>
+                                <option value="16:9" selected>Widescreen (16:9) ⭐</option>
+                                <option value="4:3">Standard (4:3)</option>
+                                <option value="9:16">Portrait (9:16)</option>
+                            </select>
+                            <button id="aspectRatioApplyBtn" class="upload-button" style="white-space: nowrap; padding: 8px 16px;">✓ OK</button>
+                        </div>
+                    </div>
+                    
+                    <div class="section-header">
+                        <span class="section-icon material-icons">image</span>
+                        <div>
+                            <h2 class="section-title">รูปภาพและข้อความของคุณ</h2>
+                            <p class="section-description">เพิ่มรูปภาพได้สูงสุด 15 ภาพ</p>
+                        </div>
+                    </div>
+                    
+                    <div id="slidesList" class="slides-list">
+                        </div>
+                </div>
+            </section>
+
+            <section id="settings-section" class="controls-panel">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-icon material-icons">settings</span>
+                        <h2 class="section-title">ตั้งค่าทั่วไป</h2>
+                    </div>
+                    <div class="controls-grid">
+                        <div class="control-group">
+                            <label class="control-label">Transition</label>
+                            <div class="segmented-control" role="radiogroup">
+                                <button type="button" class="segment-button active" data-value="slideIn">
+                                    <span class="segment-icon">🔄</span> Slide In
+                                </button>
+                                <button type="button" class="segment-button" data-value="dissolve">
+                                    <span class="segment-icon">✨</span> Dissolve
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="resolutionSelect">Resolution</label>
+                            <select id="resolutionSelect" class="custom-select">
+                                <option value="1080p">1080p</option>
+                                <option value="2K" selected>2K (2560×1440)</option>
+                                <option value="4K">4K</option>
+                            </select>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="slideDurationSelect">Duration per Slide</label>
+                            <select id="slideDurationSelect" class="custom-select">
+                                <option value="2">2.00s</option>
+                                <option value="3">3.00s</option>
+                                <option value="4" selected>4.00s</option>
+                                <option value="5">5.00s</option>
+                                <option value="6">6.00s</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="export-section" class="export-section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-icon material-icons">download</span>
+                        <h2 class="section-title">Export Video</h2>
+                    </div>
+                    
+                    <div id="exportDefault" class="export-state active">
+                        <div class="export-destination-selector">
+                            <label class="control-label">รูปแบบไฟล์</label>
+                            <div class="destination-buttons">
+                                <button class="destination-btn active" data-destination="download" data-format="webm">
+                                    <span class="destination-icon">🎞️</span>
+                                    <span class="destination-text">WebM (Browser Native)</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button id="exportButton" class="export-button">
+                            <span class="material-icons">save_alt</span>
+                            Download Video
+                        </button>
+                    </div>
+
+                    <div id="exportLoading" class="export-state">
+                        <div class="loading-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <p class="loading-text">กำลังสร้างคลิป...</p>
+                        </div>
+                    </div>
+
+                    <div id="exportSuccess" class="export-state">
+                        <div class="success-container">
+                            <div class="success-icon">✅</div>
+                            <h3 class="success-title">เสร็จเรียบร้อย!</h3>
+                            <div class="success-info">
+                                <p>ไฟล์ถูกบันทึกแล้ว: <span id="exportFilename" style="font-weight:bold;"></span></p>
+                            </div>
+                            <div class="success-actions">
+                                <button id="editAnotherButton" class="secondary-button">✏️ แก้ไข</button>
+                                <button id="createAnotherButton" class="secondary-button delete-button">🔄 เริ่มใหม่</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

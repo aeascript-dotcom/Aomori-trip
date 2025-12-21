@@ -1,0 +1,21 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradientOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFA500;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF6B35;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gradientPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#A855F7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2563EB;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Left curved part (Orange) -->
+  <path d="M 50 50 Q 40 80 60 120 Q 80 140 100 130 Q 90 110 85 80 Q 82 60 70 50 Q 60 45 50 50 Z" fill="url(#gradientOrange)"/>
+  
+  <!-- Right curved part (Purple to Blue) -->
+  <path d="M 150 50 Q 160 80 140 120 Q 120 140 100 130 Q 110 110 115 80 Q 118 60 130 50 Q 140 45 150 50 Z" fill="url(#gradientPurple)"/>
+  
+  <!-- Play button in left part (White) -->
+  <polygon points="75,75 75,95 90,85" fill="white"/>
+</svg>
